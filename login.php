@@ -4,18 +4,43 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+// This key is unique for every client. It is known by the client and the authentication provider
+$key = "This key should be unique";
+$username = $_GET['username'];
+$password = $_GET['password'];
+$redirect = $_GET['redirect'];
+$authtoken = $_GET['authtoken'];
+
+if ($_SESSION['username'] && $_SESSION['username'] == $_GET['username']) {
+    session_destroy();
+}
+
+$hashed = hash("sha256", $username.$password.$key, false);
+
+if ($authtoken == $hashed) {
+    session_start();
+    $_SESSION['username'] = $username;
+    $message = "Logged in as " . $username;    
+    header('Location: '.$redirect);
+} else {
+    $message = $authtoken. "=".$hashed ;
+    session_destroy();
+}
+?>
 <html>
+
     <head>
-        <title>Nerds & Company</title>
+        <title>Login Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans|Baumans' type='text/css'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-triton/resources/theme-triton-all.css" type="text/css"/>
-        <link rel="stylesheet" href="styles/main.css" type="text/css"/>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all-debug.js"></script>
-        <script type="text/javascript" src="init.js"></script>
+
     </head>
     <body>
-       
+        <div>
+            <p>User login in progress....</p>
+        </div>
+
     </body>
 </html>

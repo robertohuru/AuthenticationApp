@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+The Landing Page for the Client Application
 -->
 <html>
     <head>
@@ -16,6 +14,7 @@ and open the template in the editor.
         <script type="text/javascript" src="init.js"></script>
     </head>
     <body>
-       
+        <?php
+        ?>
     </body>
 </html>

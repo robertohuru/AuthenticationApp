@@ -1,6 +1,7 @@
 /* 
  * Author: Robert Ouko Ohuru 
- * Email: robertohuru@gmail.com  * 
+ * Email: robertohuru@gmail.com 
+ * Login View For the Client
  */
 
 "use strict";
@@ -54,16 +55,15 @@ Ext.define('LoginApp.view.login.LoginView', {
                             xtype: 'label',
                             anchor: '100%',
                             margin: '5 10',
-                            html: 'Email Address'
+                            html: 'User Name'
                         },
                         {
                             xtype: 'textfield',
                             anchor: '100%',
                             margin: '5 10',
-                            id: 'email',
-                            vtype: 'email',
+                            id: 'username',
                             fieldStyle: 'font-family: FontAwesome',
-                            emptyText: '\uf0e0 Email'
+                            emptyText: '\uf007 User Name'
                         },
                         {
                             xtype: 'label',
@@ -96,6 +96,23 @@ Ext.define('LoginApp.view.login.LoginView', {
                                     width: 100,
                                     text: 'Login',
                                     iconCls: 'x-fa fa-unlock whiteIcon',
+                                    handler: function () {
+                                        Ext.Ajax.request({
+                                            url: 'app/api/loginAuth.php',
+                                            params: {
+                                                username: Ext.getCmp("username").getValue(),
+                                                redirect: "http://localhost:82/Login/dashboard.php",
+                                                password: Ext.getCmp("password").getValue()
+                                            },
+                                            success: function (response, opts) {
+                                                console.log(response);
+                                                window.location.href = response.responseText;
+                                            },
+                                            failure: function (response, opts) {
+                                                console.log('server-side failure with status code ' + response.status);
+                                            }
+                                        });
+                                    }
                                 },
                                 {
 
@@ -223,7 +240,7 @@ Ext.define('LoginApp.view.login.LoginView', {
             items: [
                 {
                     xtype: 'label',
-                    html: '<span style="color: white">Copyright &copy; '+new Date().getFullYear()+' Nerds & Company</span>'
+                    html: '<span style="color: white">Copyright &copy; ' + new Date().getFullYear() + ' Nerds & Company</span>'
                 }
             ]
         }

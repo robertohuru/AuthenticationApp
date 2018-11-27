@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+This page is only visible for authorized users.
 -->
+<?php
+session_start();
+require './app/api/session.php';
+?>
 <html>
+
     <head>
         <title>Nerds & Company</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans|Baumans' type='text/css'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-triton/resources/theme-triton-all.css" type="text/css"/>
-        <link rel="stylesheet" href="styles/main.css" type="text/css"/>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all-debug.js"></script>
-        <script type="text/javascript" src="init.js"></script>
+        <style type="text/css">
+            html{
+                margin: 0px;
+                padding: 0px
+            }
+            body{
+                margin: 0px;
+                padding: 0px;
+
+            }
+        </style>
+        <script>
+            function logout() {
+                
+            }
+        </script>
+
     </head>
     <body>
-       
+        <div style="width: 100%; background: rgba(47, 155, 160, 1); height: 50px; margin: 0px; padding: 8px 0px; color: #ffffff">
+            <p><?php echo $message; ?></p>
+        </div>
+        <br>
+        <br>
+        <div style="margin: 10px">
+            <a href="app/api/logout.php">Log Out</a>
+        </div>
+
     </body>
 </html>
